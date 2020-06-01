@@ -10,7 +10,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 
 pd.set_option('display.max_columns', None)
-data = pd.read_json('/home/richi/sarcasam_headlines/Sarcasm_Headlines_Dataset_v2.json', lines=True)
+data = pd.read_json('Sarcasm_Headlines_Dataset_v2.json', lines=True)
 print(data.head())
 print(data.isnull().any(axis=0))
 
@@ -38,25 +38,40 @@ features_train, features_test, labels_train, labels_test = train_test_split(feat
 #model 1: using linear SVM
 lsvc = LinearSVC()
 lsvc.fit(features_train, labels_train)
-lsvc.predict({'chandler': 'Chandler: Sounds like a date to me.', 
-	'chandler 2': "Chandler: Alright, so I'm back in high school, I'm standing in the middle of the cafeteria, and I realize I am totally naked."})
 print("train score for lsvc",lsvc.score(features_train, labels_train))
 print("test score for lsvc",lsvc.score(features_test, labels_test))
 
-# #model 2: using gaussian naive bayes
-# gnb = GaussianNB()
-# gnb.fit(features_train, labels_train)
-# print("train score for gnb", gnb.score(features_train, labels_train))
-# print("test score for gnb", gnb.score(features_test, labels_test))
+#model 2: using gaussian naive bayes
+gnb = GaussianNB()
+gnb.fit(features_train, labels_train)
+print("train score for gnb", gnb.score(features_train, labels_train))
+print("test score for gnb", gnb.score(features_test, labels_test))
 
-# #model 3: using logistic regression
-# logreg = LogisticRegression()
-# logreg.fit(features_train, labels_train)
-# print("train score for LogReg ", logreg.score(features_train, labels_train))
-# print("test score for LogReg ", logreg.score(features_test, labels_test))
+#model 3: using logistic regression
+logreg = LogisticRegression()
+logreg.fit(features_train, labels_train)
+print("train score for LogReg ", logreg.score(features_train, labels_train))
+print("test score for LogReg ", logreg.score(features_test, labels_test))
 
-# #model 4: using random forest classifier
-# rfc = RandomForestClassifier(n_estimators=10, random_state=0)
-# rfc.fit(features_train, labels_train)
-# print("train score for random forest", rfc.score(features_train, labels_train))
-# print("test score for random forest", rfc.score(features_test, labels_test))
+#model 4: using random forest classifier
+rfc = RandomForestClassifier(n_estimators=10, random_state=0)
+rfc.fit(features_train, labels_train)
+print("train score for random forest", rfc.score(features_train, labels_train))
+print("test score for random forest", rfc.score(features_test, labels_test))
+
+#predict 1: using Linear SVM model
+data = pd.read_csv('friends_dataset.csv', dtype={'Text': 'str'})
+data.dropna(inplace=True)
+print(data.info())
+print(data.head())
+print(data.isnull().any(axis=0))
+features = data['Text'].apply(lambda s : re.sub('[^a-zA-Z]', ' ', s))
+features = features.apply(lambda x: x.split())
+features = features.apply(lambda x: ' '.join([ps.stem(word) for word in x]))
+features = list(features)
+features = tv.fit_transform(features).toarray()
+data['sarcastic'] = lsvc.predict(features)
+data = data.replace({0: 'non-sarcastic', 1: 'sarcastic'})
+data = data.groupby('Speaker')['sarcastic'].value_counts().unstack().fillna(0)
+dfCounts['sarcasm ratio'] = dfCounts['non-sarcastic'] / dfCounts['sarcastic']
+print(dfCounts)
