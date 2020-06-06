@@ -1,7 +1,7 @@
 # wqd7006-ML-proj
 This is a project repository for subject id WQD7006
 
-Title: How Sarcastic Are You?
+# Title: How Sarcastic Are You?
 
 1.0	Introduction
 
@@ -12,10 +12,6 @@ Title: How Sarcastic Are You?
 	The objectives of this study is to....
   
 	The contribution of this study...
-	
-a)
-
-b)
 
 2.0	Methodology
 
