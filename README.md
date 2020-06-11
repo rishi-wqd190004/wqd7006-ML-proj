@@ -9,7 +9,7 @@ This is a project repository for subject id WQD7006
 	
   The reason researchers nowadays interested in detecting sarcasm online, are to improve in interpreting customer sentiment, identify public perception of certain product, understanding political commentary and predicting social media communication information on certain topic. There are two approaches used to detect sarcastic sentences, rule-based and classical machine learning and deep learning approaches. In the first method (rule-based approaches), the sarcastic sentence will be recognize using specific evidence like positive verb, negative word, etc. as mentioned in Riloff et al. (2013). In the second method (machine learning and deep learning-based approaches), mostly researchers used bag of words as their features to classify sarcasm. Like in Khodak et al. (2019), the author employed bag-of-word to convert unstructured data to structured data.
   
-  Since many study were using datasets such as tweet conversations, chat transcripts, etc. Our findings will be useful to obtain additional context in sarcasm detection. 
+  Since many studies used datasets such as tweet conversations, chat transcripts, etc. Our findings will be useful to obtain additional context in sarcasm detection. 
 
 Objectives:
 	
