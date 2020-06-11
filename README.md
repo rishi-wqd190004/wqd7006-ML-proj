@@ -20,11 +20,37 @@ objectives:
 
 2.0	Methodology
 
-2.1 Datasets Description
+	2.1.	Datasets
 
-a) Training Dataset:
+	•News Headlines Dataset: This dataset can be download from “Kaggle” website. It consists of 26,709 news headlines collected from the “Onion” and “HuffPost” websites. Among the 26,709, 14,985 headlines labeled as “Not sarcastic” and 11,724 headlines are labeled as “Sarcastic”. This dataset will provide the labeled data for our study. 
 
-News Headlines Dataset: This dataset can be download from “Kaggle” website. It consists of 26,709 news headlines collected from the “Onion” and “HuffPost” websites. Among the 26,709, 14,985 headlines labeled as “Not sarcastic” and 11,724 headlines are labeled as “Sarcastic”. This dataset will provide the labeled data for our study.
+	•Friends Script Dataset: The TV show F.R.I.E.N.D.S transcripts were downloaded from https://fangj.github.io/friends/ where each scene begins with a description of the location and situation followed by series of utterances spoken by characters. The reason behind choosing TV show transcript as our dataset was to restrict to a small set of characters that use a lot of humor. These characters are often sarcastic towards each other because of their strong inter-personal relationship. 
 
-b) Testing Dataset:
+2.2.	Data Cleaning
+
+2.3.	Data Preprocessing
+
+2.4.	Features Extraction
+
+2.5.	Machine Learning
+
+	2.5.1.	Linear Support Vector Machine (SVM)
+~~
+	2.5.2.	Naïve Bayes 
+~~
+	2.5.3.	Logistic Regression
+~~
+	2.5.4.	Random Forest Regression
+~~
+	2.5.5.	Long-Short-Term-Memory (LSTM)
+~~
+3.0	Results
+
+	3.1.	Model Evaluation
+
+4.0	Discussion
+
+5.0	Conclusion
+
+6.0	References
 
