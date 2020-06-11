@@ -34,15 +34,15 @@ Objectives:
 2.5.	Machine Learning
 
 2.5.1.	Linear Support Vector Machine (SVM)
-~~
+
 2.5.2.	Naïve Bayes 
-~~
+
 2.5.3.	Logistic Regression
-~~
+
 2.5.4.	Random Forest Regression
-~~
+
 2.5.5.	Long-Short-Term-Memory (LSTM)
-~~
+
 3.0	Results
 
 3.1.	Model Evaluation
