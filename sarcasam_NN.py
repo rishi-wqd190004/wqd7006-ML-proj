@@ -78,6 +78,10 @@ df = pd.concat([df1, df2,df3,df4,df5,df6])
 df = df.sample(frac=1).reset_index(drop=True)
 print(df.head(10))
 
+#check where its only chandler
+# while :
+# 	pass
+
 #cleaning the df
 #will be done later
 
@@ -137,22 +141,23 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.33, random_
 #print(x_test.shape, y_test.shape)
 
 #model
-# model1 = Sequential()
-# model1.add(layers.Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=x.shape[1]))
-# model1.add(layers.SpatialDropout1D(0.2))
-# model1.add(layers.LSTM(64, dropout=0.2, recurrent_dropout=0.2))
-# model1.add(layers.Dense(2, activation='softmax'))
-# model1.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model1 = Sequential()
+model1.add(layers.Embedding(MAX_NB_WORDS, EMBEDDING_DIM, input_length=x.shape[1]))
+model1.add(layers.SpatialDropout1D(0.2))
+model1.add(layers.LSTM(64, dropout=0.2, recurrent_dropout=0.2))
+model1.add(layers.Dense(2, activation='softmax'))
+model1.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-# epochs = 10
-# batch_size = 64
+epochs = 10
+batch_size = 64
 
-# history = model1.fit(x_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.1, callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)], verbose=1)
+history = model1.fit(x_train, y_train, epochs=epochs, batch_size=batch_size,validation_split=0.1, callbacks=[EarlyStopping(monitor='val_loss', patience=3, min_delta=0.0001)], verbose=1)
 
-# accr = model1.evaluate(x_test, y_test)
+accr = model1.evaluate(x_test, y_test)
 
-# y_pred = model1.predict(x_test)
-# print('loss: {1}\n accuracy: {2}'.format(accr[0],accr[1]))
+y_pred = model1.predict(x_test)
+print(model1.summary)
+print('loss: {0}\n accuracy: {1}'.format(accr[0],accr[1]))
 
 #model 2
 # model2 = Sequential()
@@ -175,4 +180,14 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size=0.33, random_
 # print('loss: {1}\n accuracy: {2}'.format(accr_2[0],accr_2[1]))
 
 #predicting the percentage of sarcasm
-input_string = str(input())
+#input_string = str(input())
+#model1.test_on_batch(input_string, y=sarcastic or not)
+input_string = str(input()) #' What rule? There\'s no rule, if anything, you owe me a table!'str(input())
+df = pd.DataFrame({'Dialogue': [input_string]})
+x = tokenizer.texts_to_sequences(df['Dialogue'].values)
+x = pad_sequences(x, maxlen=MAX_SEQUENCE_LENGTH)
+#print('shape of tensor:', x.shape)
+#print(x)
+#print(type(x))
+y_pred = model1.predict(x)
+print('y_pred: {0} Percentage of sarcasm {1} and percentage of non-sarcasm {2}',format(y_pred, y_pred[1], y_pred[0]))
